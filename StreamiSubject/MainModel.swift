@@ -8,8 +8,9 @@
 import UIKit
 
 class MainModel: Base {
-
     
+    /// 현재 화면에 표시할 뷰 생성
+    /// - Parameter className: 생성할 Class Name
     func mainScreen(className: String) -> BaseViewController {
         let appName = { (_ className: String) -> UIViewController in
             let classStringName: String = String(format: "%@.%@", Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String, className)

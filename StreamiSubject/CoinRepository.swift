@@ -11,9 +11,19 @@ import ObjectMapper
 
 class CoinRepository: Mappable, Equatable {
     
+    /// 코인id
     var id: Int = 0
+    
+    /// 코인정렬
+    var index: Int = 0
+    
+    /// 통화쌍
     var name: String = ""
+    
+    /// 기준통화
     var baseAsset: String = ""
+    
+    /// 상대통화
     var quoteAsset: String = ""
     
     required init?(map: Map){
@@ -28,7 +38,7 @@ class CoinRepository: Mappable, Equatable {
     }
     
     public static func == (lhs: CoinRepository, rhs: CoinRepository) -> Bool {
-        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.baseAsset == rhs.baseAsset && lhs.quoteAsset == rhs.quoteAsset
+        return lhs.id == rhs.id && lhs.name == rhs.name && lhs.baseAsset == rhs.baseAsset && lhs.quoteAsset == rhs.quoteAsset && lhs.index == rhs.index
     }
     
 }

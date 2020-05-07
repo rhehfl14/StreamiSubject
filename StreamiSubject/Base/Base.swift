@@ -14,4 +14,6 @@ class Base {
     
     
     func requestData() {}
+    func requestComplete() {}
+    
 }

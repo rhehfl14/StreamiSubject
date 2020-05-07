@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="StreamiSubject" customModuleProvider="target">
             <connections>
+                <outlet property="btnPriceSort" destination="Gny-ED-XKw" id="jxr-T9-Rtd"/>
+                <outlet property="btnVolumeSort" destination="6OM-O6-Qyx" id="Jh4-ab-lAn"/>
                 <outlet property="segCoin" destination="NTf-gb-kVv" id="0Wl-N0-TBl"/>
                 <outlet property="tableView" destination="Qtv-1D-MUx" id="mgT-p1-spi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,26 +34,67 @@
                         <segment title="ETH"/>
                     </segments>
                 </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qtv-1D-MUx">
-                    <rect key="frame" x="0.0" y="90" width="414" height="772"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qtv-1D-MUx">
+                    <rect key="frame" x="0.0" y="138" width="414" height="724"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="eoo-sT-wUP"/>
-                        <outlet property="delegate" destination="-1" id="wPK-0l-ZWe"/>
-                    </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d25-38-9m7">
+                    <rect key="frame" x="0.0" y="90" width="414" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="코인명" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8b-Yi-rkX">
+                            <rect key="frame" x="0.0" y="0.0" width="86" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="86" id="xPi-qw-kaF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gny-ED-XKw">
+                            <rect key="frame" x="86" y="0.0" width="164" height="40"/>
+                            <state key="normal" title="현재가▲">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OM-O6-Qyx">
+                            <rect key="frame" x="250" y="0.0" width="164" height="40"/>
+                            <state key="normal" title="거래량▲">
+                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="6OM-O6-Qyx" secondAttribute="trailing" id="5W5-zQ-xuK"/>
+                        <constraint firstItem="6OM-O6-Qyx" firstAttribute="leading" secondItem="Gny-ED-XKw" secondAttribute="trailing" id="67G-1U-Zk7"/>
+                        <constraint firstItem="Gny-ED-XKw" firstAttribute="top" secondItem="d25-38-9m7" secondAttribute="top" id="6wZ-cY-new"/>
+                        <constraint firstAttribute="bottom" secondItem="r8b-Yi-rkX" secondAttribute="bottom" id="BIt-UC-DES"/>
+                        <constraint firstItem="Gny-ED-XKw" firstAttribute="leading" secondItem="r8b-Yi-rkX" secondAttribute="trailing" id="CEr-0Q-gBE"/>
+                        <constraint firstItem="r8b-Yi-rkX" firstAttribute="leading" secondItem="d25-38-9m7" secondAttribute="leading" id="HEQ-fF-JZ7"/>
+                        <constraint firstItem="6OM-O6-Qyx" firstAttribute="width" secondItem="Gny-ED-XKw" secondAttribute="width" id="I57-28-Bo6"/>
+                        <constraint firstItem="r8b-Yi-rkX" firstAttribute="top" secondItem="d25-38-9m7" secondAttribute="top" id="Lgm-SC-ztn"/>
+                        <constraint firstItem="6OM-O6-Qyx" firstAttribute="leading" secondItem="Gny-ED-XKw" secondAttribute="trailing" id="O2Y-cS-4gR"/>
+                        <constraint firstAttribute="bottom" secondItem="Gny-ED-XKw" secondAttribute="bottom" id="RmI-i0-tHk"/>
+                        <constraint firstItem="6OM-O6-Qyx" firstAttribute="top" secondItem="d25-38-9m7" secondAttribute="top" id="W5l-Uq-Dd4"/>
+                        <constraint firstAttribute="height" constant="40" id="nVr-1p-gMe"/>
+                        <constraint firstAttribute="bottom" secondItem="6OM-O6-Qyx" secondAttribute="bottom" id="raA-3B-e9s"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="NTf-gb-kVv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="9wm-xO-7Yy"/>
+                <constraint firstItem="Qtv-1D-MUx" firstAttribute="top" secondItem="d25-38-9m7" secondAttribute="bottom" constant="8" id="Wzs-IU-BQE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Qtv-1D-MUx" secondAttribute="bottom" id="Y3i-ez-o2j"/>
-                <constraint firstItem="Qtv-1D-MUx" firstAttribute="top" secondItem="NTf-gb-kVv" secondAttribute="bottom" constant="8" id="gdn-Xb-7D6"/>
+                <constraint firstItem="d25-38-9m7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c3w-ok-0eF"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d25-38-9m7" secondAttribute="trailing" id="jDs-jH-0Ez"/>
                 <constraint firstItem="NTf-gb-kVv" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="p7T-Qb-bH8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qtv-1D-MUx" secondAttribute="trailing" id="rYy-gb-VGN"/>
+                <constraint firstItem="d25-38-9m7" firstAttribute="top" secondItem="NTf-gb-kVv" secondAttribute="bottom" constant="8" id="rrE-6P-xA1"/>
                 <constraint firstItem="Qtv-1D-MUx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xkW-bg-IaT"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="132" y="135"/>
+            <point key="canvasLocation" x="-11.594202898550726" y="48.214285714285715"/>
         </view>
     </objects>
 </document>

@@ -8,18 +8,45 @@
 
 import RxSwift
 import RxCocoa
+import RxAlamofire
+import ObjectMapper
+
+enum DataError: Error {
+    case receiveDataError
+}
 
 class HomeViewModel: Base {
     /// model
     lazy var model: HomeModel = HomeModel(viewModel: self)
 
-    let receiveData = BehaviorSubject<[CoinRepository]>(value: [])
+    /// 화면에 표시할 데이터 저장
+    var receiveData: [HomeRepository] = []
+        
+    /// 저장 데이터 옵저버
+    let receiveDataObservable = BehaviorSubject<[HomeRepository]>(value: [])
     
-    /// requestData
-    /// index 0 : KRW
-    /// index 1 : BTC
-    /// index 2 : ETH
-    func requestData(index: NSInteger) {
-        model.requestData(index: index)
+    override func requestComplete() {
+        receiveDataObservable.onNext(receiveData)
+    }
+}
+
+// MARK - DataRequest
+extension HomeViewModel {
+    /// 통신요청
+    /// quoteAsset : KRW, BTC, ETH
+    func requestData(quoteAsset: String) {
+        receiveData.removeAll()
+        model.requestData(quoteAsset: quoteAsset, firstRequest: true)
+    }
+}
+
+// MARK: - Sort
+extension HomeViewModel {
+    func sortPrice(high: Bool) {
+        model.sortPrice(high: high)
+    }
+    
+    func sortVolume(high: Bool) {
+        model.sortVolume(high: high)
     }
 }

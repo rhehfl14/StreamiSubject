@@ -10,15 +10,11 @@ import RxSwift
 import RxCocoa
 
 class MainViewModel: Base {
-    /// model
-    let coinMaster = CoinMaster.sharedInstance
+    /// Model
     let model: MainModel = MainModel()
     
-    /// 통신 리시브 데이터
-    let receiveData: [[String: String]] = []
-    
-//    / 현재 뷰
-//    var curViewController: BaseViewController? = nil
+    /// 마스터 요청
+    let coinMaster = CoinMaster.sharedInstance
     
     let screenObservable = PublishSubject<BaseViewController>()
     
@@ -27,6 +23,7 @@ class MainViewModel: Base {
         coinMaster.requestCoinMaster()
     }
     
+    /// 메인뷰 옵저버 전달
     func mainScreen() {
         screenObservable.onNext(model.mainScreen(className: "HomeViewController"))
     }

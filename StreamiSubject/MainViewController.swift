@@ -12,10 +12,20 @@ import SnapKit
 
 class MainViewController: BaseViewController {
     
+    /// 메인 뷰 화면 표시
     @IBOutlet weak var viewMain: UIView!
     
+    /// ViewModel
     var viewModel: MainViewModel = MainViewModel()
-    weak var curViewController: BaseViewController? = nil
+    
+    /// 현재 표시하고 있는뷰
+    weak var curViewController: BaseViewController? = nil {
+        didSet (oldValue) {
+            if oldValue != nil {
+                oldValue?.view.removeFromSuperview()
+            }
+        }
+    }
     
     /**
      * Singleton MainViewController
@@ -30,16 +40,34 @@ class MainViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        coinMasterObserable()
+        /// 마스터 옵저버 등록
+        coinMasterObservable()
     }
     
-    func coinMasterObserable() {
+    /// 메인 뷰 옵저버 등록 및 표시 뷰 요청
+    private func mainScreen() {
+        mainScreenObservable()
+        viewModel.mainScreen()
+    }
+    
+    private func coinMasterComplete() {
+        mainScreen()
+    }
+    
+}
+
+// MARK: - Observable
+extension MainViewController {
+    
+    /// 코인 마스터 옵저버
+    func coinMasterObservable() {
         CoinMaster.sharedInstance
             .coinMasterObservable
             .subscribe({ [weak self] event in
                 switch event {
                     
                 case .completed:
+                    /// 코인마스터 요청이 완료되면 화면을 표시한다.
                     self?.coinMasterComplete()
                     
                 default :
@@ -48,16 +76,8 @@ class MainViewController: BaseViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func coinMasterComplete() {
-        mainScreen()
-    }
-    
-    func mainScreen() {
-        mainScreenObserable()
-        viewModel.mainScreen()
-    }
-    
-    func mainScreenObserable() {
+    /// 메인 뷰 옵저버
+    func mainScreenObservable() {
         viewModel
             .screenObservable
             .subscribe(onNext: { [weak self] viewController in
